@@ -1,0 +1,104 @@
+HELP.md
+# ==========================================
+# SENHAS E CONFIGURAÇÕES SENSÍVEIS
+# NUNCA envie esses arquivos ao GitHub!
+# ==========================================
+application.properties
+application.yml
+application-prod.properties
+application-prod.yml
+application-dev.properties
+application-dev.yml
+.env
+.env.*
+*.env
+secrets.properties
+
+# ==========================================
+# JAVA / MAVEN (backend Spring Boot)
+# ==========================================
+target/
+*.class
+*.jar
+*.war
+*.ear
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Maven wrapper binário
+.mvn/wrapper/maven-wrapper.jar
+
+# Logs de erro da JVM
+hs_err_pid*
+replay_pid*
+
+# ==========================================
+# INTELLIJ IDEA
+# ==========================================
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+# ==========================================
+# JAVAFX / SCENE BUILDER (desktop)
+# ==========================================
+*.fxml~
+
+# ==========================================
+# NODE / ANGULAR (frontend web)
+# ==========================================
+node_modules/
+dist/
+.angular/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ==========================================
+# VS CODE
+# ==========================================
+.vscode/
+*.code-workspace
+
+# ==========================================
+# UPLOADS / IMAGENS DOS PRODUTOS
+# ==========================================
+uploads/
+**/static/uploads/
+**/resources/uploads/
+
+# ==========================================
+# LOGS
+# ==========================================
+*.log
+logs/
+log/
+
+# ==========================================
+# SISTEMA OPERACIONAL
+# ==========================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.fuse_hidden*
+.directory
