@@ -59,6 +59,13 @@ public class UserService {
                 .toList();
     }
 
+    // Busca um usuário pelo ID
+    public UserDTO.Response findById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado: " + id));
+        return toResponse(user);
+    }
+
     // Atualiza dados de um usuário
     public UserDTO.Response update(Long id, UserDTO.Request dto) {
         User user = userRepository.findById(id)

@@ -33,7 +33,7 @@ public class Product {
     @Column(nullable = false, precision = 10, scale = 2) // precision = total de dígitos, scale = casas decimais
     private BigDecimal price; // BigDecimal é o tipo correto para dinheiro (evita erros de arredondamento)
 
-    @Column(name = "image_url")
+    @Column(name = "image_url", length = 1000)
     private String imageUrl; // Caminho ou URL da imagem do produto
 
     @Min(value = 0, message = "Quantidade não pode ser negativa")
