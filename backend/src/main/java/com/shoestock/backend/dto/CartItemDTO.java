@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
-public class CarItemDTO {
+public class CartItemDTO {
 
     @Data
     @Builder

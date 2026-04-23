@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="cart_items")
-public class CarItem {
+@Table(name = "cart_items")
+public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class CarItem {
     // @ManyToOne = muitos CartItems → um User
     // FetchType.LAZY = só carrega o User do banco quando for necessário (mais performático)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false) // cria uma chave estrangeira
+    @JoinColumn(name = "user_id", nullable = false) // Cria a coluna "user_id" como chave estrangeira
     private User user;
 
     // Relacionamento: vários itens do carrinho podem referenciar o mesmo produto
