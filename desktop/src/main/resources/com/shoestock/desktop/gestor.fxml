@@ -1,10 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.shoestock.desktop.controller.GestorController"
-      style="-fx-background-color: #1a1a2e; -fx-padding: 30;">
-    <Label text="Tela do Gestor — Em construção"
-           style="-fx-text-fill: white; -fx-font-size: 18px;"/>
+      spacing="0"
+      style="-fx-background-color: #1a1a2e;">
+
+    <!-- Cabeçalho -->
+    <HBox alignment="CENTER_LEFT" spacing="20"
+          style="-fx-background-color: #16213e; -fx-padding: 15 25 15 25;">
+        <Label text="👟 ShoeStock"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #e94560;"/>
+        <Label fx:id="welcomeLabel"
+               style="-fx-font-size: 13px; -fx-text-fill: #a8a8b3;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Sair" onAction="#handleLogout"
+                style="-fx-background-color: #e94560; -fx-text-fill: white;
+                       -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 6 15;"/>
+    </HBox>
+
+    <!-- Abas -->
+    <TabPane VBox.vgrow="ALWAYS"
+             style="-fx-background-color: #1a1a2e; -fx-tab-min-width: 150px;">
+
+        <!-- Aba 1: Estoquistas -->
+        <Tab text="👥 Estoquistas" closable="false">
+            <VBox spacing="15" style="-fx-padding: 20;">
+
+                <!-- Formulário -->
+                <VBox spacing="10"
+                      style="-fx-background-color: #16213e;
+                             -fx-background-radius: 8; -fx-padding: 20;">
+                    <Label text="Cadastrar / Editar Estoquista"
+                           style="-fx-text-fill: #e94560; -fx-font-size: 14px;
+                                  -fx-font-weight: bold;"/>
+
+                    <HBox spacing="10">
+                        <TextField fx:id="nomeField" promptText="Nome completo"
+                                   HBox.hgrow="ALWAYS"
+                                   style="-fx-background-color: #0f3460;
+                                          -fx-text-fill: white; -fx-padding: 8;
+                                          -fx-background-radius: 5;"/>
+                        <TextField fx:id="emailEstField" promptText="Email"
+                                   HBox.hgrow="ALWAYS"
+                                   style="-fx-background-color: #0f3460;
+                                          -fx-text-fill: white; -fx-padding: 8;
+                                          -fx-background-radius: 5;"/>
+                        <PasswordField fx:id="senhaEstField" promptText="Senha"
+                                       HBox.hgrow="ALWAYS"
+                                       style="-fx-background-color: #0f3460;
+                                              -fx-text-fill: white; -fx-padding: 8;
+                                              -fx-background-radius: 5;"/>
+                    </HBox>
+
+                    <HBox spacing="10">
+                        <Button text="💾 Salvar" onAction="#handleSalvarEstoquista"
+                                style="-fx-background-color: #e94560; -fx-text-fill: white;
+                                       -fx-background-radius: 5; -fx-cursor: hand;
+                                       -fx-padding: 8 20;"/>
+                        <Button text="🧹 Limpar" onAction="#handleLimparEstoquista"
+                                style="-fx-background-color: #0f3460; -fx-text-fill: white;
+                                       -fx-background-radius: 5; -fx-cursor: hand;
+                                       -fx-padding: 8 20;"/>
+                        <Label fx:id="msgEstLabel" style="-fx-text-fill: #4caf50;
+                                                          -fx-font-size: 12px;"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Tabela de estoquistas -->
+                <TableView fx:id="tabelaEstoquistas" VBox.vgrow="ALWAYS"
+                           style="-fx-background-color: #16213e;">
+                    <columns>
+                        <TableColumn fx:id="colEstId" text="ID" prefWidth="60"/>
+                        <TableColumn fx:id="colEstNome" text="Nome" prefWidth="200"/>
+                        <TableColumn fx:id="colEstEmail" text="Email" prefWidth="250"/>
+                        <TableColumn fx:id="colEstAcoes" text="Ações" prefWidth="150"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Nenhum estoquista cadastrado"
+                               style="-fx-text-fill: #a8a8b3;"/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Aba 2: Produtos -->
+        <Tab text="📦 Estoque" closable="false">
+            <VBox spacing="15" style="-fx-padding: 20;">
+
+                <!-- Filtro -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Filtrar:"
+                           style="-fx-text-fill: #e0e0e0;"/>
+                    <ComboBox fx:id="filtroTipo" promptText="Todos"
+                              style="-fx-background-color: #0f3460;
+                                     -fx-text-fill: white;"/>
+                    <Button text="🔍 Buscar" onAction="#handleFiltrarProdutos"
+                            style="-fx-background-color: #e94560; -fx-text-fill: white;
+                                   -fx-background-radius: 5; -fx-cursor: hand;
+                                   -fx-padding: 8 15;"/>
+                </HBox>
+
+                <!-- Tabela de produtos -->
+                <TableView fx:id="tabelaProdutos" VBox.vgrow="ALWAYS"
+                           style="-fx-background-color: #16213e;">
+                    <columns>
+                        <TableColumn fx:id="colProdId" text="ID" prefWidth="60"/>
+                        <TableColumn fx:id="colProdNome" text="Nome" prefWidth="180"/>
+                        <TableColumn fx:id="colProdTipo" text="Tipo" prefWidth="100"/>
+                        <TableColumn fx:id="colProdPreco" text="Preço" prefWidth="100"/>
+                        <TableColumn fx:id="colProdQtd" text="Qtd" prefWidth="80"/>
+                        <TableColumn fx:id="colProdAcoes" text="Ações" prefWidth="100"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Nenhum produto encontrado"
+                               style="-fx-text-fill: #a8a8b3;"/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+    </TabPane>
 </VBox>

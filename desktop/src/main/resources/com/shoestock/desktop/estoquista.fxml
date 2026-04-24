@@ -1,10 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.shoestock.desktop.controller.EstoquistaController"
-      style="-fx-background-color: #1a1a2e; -fx-padding: 30;">
-    <Label text="Tela do Estoquista — Em construção"
-           style="-fx-text-fill: white; -fx-font-size: 18px;"/>
+      spacing="0"
+      style="-fx-background-color: #1a1a2e;">
+
+    <!-- Cabeçalho -->
+    <HBox alignment="CENTER_LEFT" spacing="20"
+          style="-fx-background-color: #16213e; -fx-padding: 15 25 15 25;">
+        <Label text="👟 ShoeStock"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;
+                      -fx-text-fill: #e94560;"/>
+        <Label fx:id="welcomeLabel"
+               style="-fx-font-size: 13px; -fx-text-fill: #a8a8b3;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Sair" onAction="#handleLogout"
+                style="-fx-background-color: #e94560; -fx-text-fill: white;
+                       -fx-background-radius: 5; -fx-cursor: hand;
+                       -fx-padding: 6 15;"/>
+    </HBox>
+
+    <VBox spacing="15" VBox.vgrow="ALWAYS" style="-fx-padding: 20;">
+
+        <!-- Formulário de produto -->
+        <VBox spacing="12"
+              style="-fx-background-color: #16213e;
+                     -fx-background-radius: 8; -fx-padding: 20;">
+
+            <Label text="Cadastrar / Editar Produto"
+                   style="-fx-text-fill: #e94560; -fx-font-size: 14px;
+                          -fx-font-weight: bold;"/>
+
+            <!-- Linha 1: Nome e Tipo -->
+            <HBox spacing="10">
+                <TextField fx:id="nomeField" promptText="Nome do produto"
+                           HBox.hgrow="ALWAYS"
+                           style="-fx-background-color: #0f3460;
+                                  -fx-text-fill: white; -fx-padding: 8;
+                                  -fx-background-radius: 5;"/>
+                <ComboBox fx:id="tipoField" promptText="Tipo"
+                          style="-fx-background-color: #0f3460;
+                                 -fx-text-fill: white; -fx-pref-width: 150;"/>
+            </HBox>
+
+            <!-- Linha 2: Preço e Quantidade -->
+            <HBox spacing="10">
+                <TextField fx:id="precoField" promptText="Preço (ex: 189.90)"
+                           HBox.hgrow="ALWAYS"
+                           style="-fx-background-color: #0f3460;
+                                  -fx-text-fill: white; -fx-padding: 8;
+                                  -fx-background-radius: 5;"/>
+                <TextField fx:id="quantidadeField" promptText="Quantidade"
+                           HBox.hgrow="ALWAYS"
+                           style="-fx-background-color: #0f3460;
+                                  -fx-text-fill: white; -fx-padding: 8;
+                                  -fx-background-radius: 5;"/>
+            </HBox>
+
+            <!-- Linha 3: Descrição -->
+            <TextField fx:id="descricaoField" promptText="Descrição do produto"
+                       style="-fx-background-color: #0f3460;
+                              -fx-text-fill: white; -fx-padding: 8;
+                              -fx-background-radius: 5;"/>
+
+            <!-- Linha 4: URL da imagem -->
+            <TextField fx:id="imagemField" promptText="URL da imagem"
+                       style="-fx-background-color: #0f3460;
+                              -fx-text-fill: white; -fx-padding: 8;
+                              -fx-background-radius: 5;"/>
+
+            <!-- Botões -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="💾 Salvar Produto" onAction="#handleSalvarProduto"
+                        style="-fx-background-color: #e94560; -fx-text-fill: white;
+                               -fx-background-radius: 5; -fx-cursor: hand;
+                               -fx-padding: 8 20;"/>
+                <Button text="🧹 Limpar" onAction="#handleLimpar"
+                        style="-fx-background-color: #0f3460; -fx-text-fill: white;
+                               -fx-background-radius: 5; -fx-cursor: hand;
+                               -fx-padding: 8 20;"/>
+                <Label fx:id="msgLabel"
+                       style="-fx-font-size: 12px;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Tabela de produtos -->
+        <TableView fx:id="tabelaProdutos" VBox.vgrow="ALWAYS"
+                   style="-fx-background-color: #16213e;">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="colNome" text="Nome" prefWidth="180"/>
+                <TableColumn fx:id="colTipo" text="Tipo" prefWidth="100"/>
+                <TableColumn fx:id="colPreco" text="Preço" prefWidth="100"/>
+                <TableColumn fx:id="colQtd" text="Qtd" prefWidth="70"/>
+                <TableColumn fx:id="colDesc" text="Descrição" prefWidth="200"/>
+                <TableColumn fx:id="colAcoes" text="Ações" prefWidth="100"/>
+            </columns>
+            <placeholder>
+                <Label text="Nenhum produto cadastrado"
+                       style="-fx-text-fill: #a8a8b3;"/>
+            </placeholder>
+        </TableView>
+    </VBox>
 </VBox>
