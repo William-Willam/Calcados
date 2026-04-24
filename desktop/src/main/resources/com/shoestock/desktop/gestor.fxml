@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.shoestock.desktop.controller.GestorController"
+      style="-fx-background-color: #1a1a2e; -fx-padding: 30;">
+    <Label text="Tela do Gestor — Em construção"
+           style="-fx-text-fill: white; -fx-font-size: 18px;"/>
+</VBox>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.shoestock.desktop.controller.LoginController"
+      alignment="CENTER"
+      spacing="20"
+      style="-fx-background-color: #1a1a2e;">
+
+    <padding>
+        <Insets top="60" right="80" bottom="60" left="80"/>
+    </padding>
+
+    <!-- Título -->
+    <Label text="👟 ShoeStock"
+           style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #e94560;"/>
+
+    <Label text="Sistema de Gestão"
+           style="-fx-font-size: 14px; -fx-text-fill: #a8a8b3;"/>
+
+    <!-- Card de login -->
+    <VBox spacing="15"
+          style="-fx-background-color: #16213e; -fx-background-radius: 10; -fx-padding: 30;">
+
+        <Label text="Email"
+               style="-fx-text-fill: #e0e0e0; -fx-font-size: 13px;"/>
+        <TextField fx:id="emailField"
+                   promptText="seu@email.com"
+                   style="-fx-background-color: #0f3460; -fx-text-fill: white;
+                          -fx-prompt-text-fill: #666; -fx-background-radius: 5;
+                          -fx-padding: 10; -fx-font-size: 13px;"/>
+
+        <Label text="Senha"
+               style="-fx-text-fill: #e0e0e0; -fx-font-size: 13px;"/>
+        <PasswordField fx:id="passwordField"
+                       promptText="••••••••"
+                       style="-fx-background-color: #0f3460; -fx-text-fill: white;
+                              -fx-prompt-text-fill: #666; -fx-background-radius: 5;
+                              -fx-padding: 10; -fx-font-size: 13px;"/>
+
+        <!-- Mensagem de erro -->
+        <Label fx:id="errorLabel"
+               text=""
+               style="-fx-text-fill: #e94560; -fx-font-size: 12px;"/>
+
+        <!-- Botão de login -->
+        <Button fx:id="loginButton"
+                text="Entrar"
+                onAction="#handleLogin"
+                maxWidth="Infinity"
+                style="-fx-background-color: #e94560; -fx-text-fill: white;
+                       -fx-font-size: 14px; -fx-font-weight: bold;
+                       -fx-background-radius: 5; -fx-padding: 12;
+                       -fx-cursor: hand;"/>
+    </VBox>
+</VBox>
