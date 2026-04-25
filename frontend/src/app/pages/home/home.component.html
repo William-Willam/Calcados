@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Calçados para <span>todos os estilos</span></h1>
+    <p>Encontre o par perfeito para você</p>
+  </div>
+</section>
+
+<!-- Filtros -->
+<section class="filtros">
+  <button
+    [class.ativo]="filtroAtivo() === 'TODOS'"
+    (click)="filtrar('TODOS')">
+    Todos
+  </button>
+  <button
+    [class.ativo]="filtroAtivo() === 'FEMININO'"
+    (click)="filtrar('FEMININO')">
+    👠 Feminino
+  </button>
+  <button
+    [class.ativo]="filtroAtivo() === 'MASCULINO'"
+    (click)="filtrar('MASCULINO')">
+    👞 Masculino
+  </button>
+</section>
+
+<!-- Loading -->
+<div class="loading" *ngIf="loading()">
+  <p>Carregando produtos...</p>
+</div>
+
+<!-- Grid de produtos -->
+<section class="produtos" *ngIf="!loading()">
+  <div *ngIf="products().length === 0" class="empty">
+    <p>Nenhum produto encontrado.</p>
+  </div>
+
+  <div class="produto-card" *ngFor="let product of products()">
+    <div class="produto-badge">{{ product.type }}</div>
+
+    <img [src]="product.imageUrl || 'assets/no-image.png'"
+         [alt]="product.name"
+         onerror="this.src='assets/no-image.png'"/>
+
+    <div class="produto-info">
+      <h3>{{ product.name }}</h3>
+      <p class="descricao">{{ product.description }}</p>
+      <div class="produto-footer">
+        <span class="preco">R$ {{ product.price | number:'1.2-2' }}</span>
+        <span class="estoque" [class.baixo]="product.quantity < 5">
+          {{ product.quantity }} em estoque
+        </span>
+      </div>
+      <button
+        class="btn-comprar"
+        [class.adicionado]="addedProductId() === product.id"
+        [disabled]="product.quantity === 0"
+        (click)="adicionarAoCarrinho(product)">
+        {{ addedProductId() === product.id ? '✅ Adicionado!' : '🛒 Adicionar' }}
+      </button>
+    </div>
+  </div>
+</section>

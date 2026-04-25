@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/">👟 ShoeStock</a>
+  </div>
+
+  <div class="navbar-menu">
+    <a routerLink="/" class="nav-link">Início</a>
+    <a routerLink="/cart" class="nav-link cart-link">
+      🛒 Carrinho
+      <span class="cart-badge" *ngIf="cartService.totalItems() > 0">
+        {{ cartService.totalItems() }}
+      </span>
+    </a>
+  </div>
+</nav>
