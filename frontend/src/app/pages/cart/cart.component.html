@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+
+<section class="cart-container">
+
+  <!-- Cabeçalho -->
+  <div class="cart-header">
+    <h1>🛒 Meu Carrinho</h1>
+    <span class="cart-count">
+      {{ cartService.totalItems() }} item(s)
+    </span>
+  </div>
+
+  <!-- Carrinho vazio -->
+  <div class="cart-empty" *ngIf="cartService.cartItems().length === 0">
+    <p>😕 Seu carrinho está vazio!</p>
+    <a routerLink="/" class="btn-continuar">
+      👟 Ver Produtos
+    </a>
+  </div>
+
+  <!-- Lista de itens -->
+  <div class="cart-content" *ngIf="cartService.cartItems().length > 0">
+
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cartService.cartItems()">
+
+        <!-- Imagem -->
+        <img [src]="item.productImageUrl || 'assets/no-image.png'"
+             [alt]="item.productName"
+             onerror="this.src='assets/no-image.png'"/>
+
+        <!-- Info -->
+        <div class="item-info">
+          <h3>{{ item.productName }}</h3>
+          <p class="item-preco">
+            R$ {{ item.productPrice | number:'1.2-2' }} cada
+          </p>
+          <p class="item-quantidade">
+            Quantidade: <strong>{{ item.quantity }}</strong>
+          </p>
+        </div>
+
+        <!-- Subtotal e remover -->
+        <div class="item-actions">
+          <span class="item-subtotal">
+            R$ {{ item.subtotal | number:'1.2-2' }}
+          </span>
+          <button class="btn-remover" (click)="removerItem(item.productId)">
+            🗑️ Remover
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Resumo do pedido -->
+    <div class="cart-summary">
+      <h2>Resumo do Pedido</h2>
+
+      <div class="summary-row"
+           *ngFor="let item of cartService.cartItems()">
+        <span>{{ item.productName }} x{{ item.quantity }}</span>
+        <span>R$ {{ item.subtotal | number:'1.2-2' }}</span>
+      </div>
+
+      <div class="summary-divider"></div>
+
+      <div class="summary-total">
+        <span>Total</span>
+        <span class="total-value">
+          R$ {{ cartService.totalPrice() | number:'1.2-2' }}
+        </span>
+      </div>
+
+      <button class="btn-finalizar">
+        ✅ Finalizar Pedido
+      </button>
+
+      <a routerLink="/" class="btn-continuar">
+        ← Continuar Comprando
+      </a>
+
+      <button class="btn-limpar" (click)="limparCarrinho()">
+        🗑️ Limpar Carrinho
+      </button>
+    </div>
+
+  </div>
+</section>
